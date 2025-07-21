@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Smiths & TV Girl Encyclopedia</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #f6f6f6;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #fff;
+            border-bottom: 3px solid #a2a9b1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0645ad;
+            text-decoration: none;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0;
+        }
+
+        .nav-tab {
+            padding: 8px 16px;
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-bottom: none;
+            color: #0645ad;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: white;
+        }
+
+        .search-box {
+            padding: 6px 12px;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            width: 200px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            border: 1px solid #a2a9b1;
+            border-radius: 3px;
+            height: fit-content;
+        }
+
+        .sidebar-section {
+            border-bottom: 1px solid #eaecf0;
+        }
+
+        .sidebar-title {
+            background: #eaecf0;
+            padding: 8px 12px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-content {
+            padding: 12px;
+        }
+
+        .sidebar-link {
+            display: block;
+            color: #0645ad;
+            text-decoration: none;
+            padding: 4px 0;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-link:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            flex: 1;
+            background: white;
+            border: 1px solid #a2a9b1;
+            border-radius: 3px;
+            padding: 20px;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: normal;
+            color: #000;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #a2a9b1;
+            padding-bottom: 10px;
+        }
+
+        .infobox {
+            float: right;
+            width: 300px;
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-spacing: 3px;
+            margin: 0 0 20px 20px;
+            font-size: 0.9rem;
+        }
+
+        .infobox-title {
+            background: #ccccff;
+            text-align: center;
+            font-weight: bold;
+            padding: 8px;
+        }
+
+        .infobox-image {
+            text-align: center;
+            padding: 8px;
+        }
+
+        .infobox-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .infobox-row {
+            display: flex;
+        }
+
+        .infobox-label {
+            background: #eee;
+            padding: 4px 8px;
+            font-weight: bold;
+            width: 100px;
+            vertical-align: top;
+        }
+
+        .infobox-data {
+            padding: 4px 8px;
+            flex: 1;
+        }
+
+        .content-section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #000;
+            margin: 20px 0 10px 0;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 5px;
+        }
+
+        .subsection-title {
+            font-size: 1.3rem;
+            color: #000;
+            margin: 15px 0 8px 0;
+        }
+
+        .song-list {
+            columns: 2;
+            column-gap: 30px;
+            margin: 10px 0;
+        }
+
+        .song-item {
+            break-inside: avoid;
+            margin: 3px 0;
+            padding: 2px 0;
+        }
+
+        .song-link {
+            color: #0645ad;
+            text-decoration: none;
+        }
+
+        .song-link:hover {
+            text-decoration: underline;
+        }
+
+        .forum-section {
+            display: none;
+        }
+
+        .forum-section.active {
+            display: block;
+        }
+
+        .forum-topics {
+            border: 1px solid #a2a9b1;
+        }
+
+        .forum-topic {
+            display: flex;
+            padding: 12px;
+            border-bottom: 1px solid #eaecf0;
+            align-items: center;
+        }
+
+        .forum-topic:hover {
+            background: #f8f9fa;
+        }
+
+        .topic-title {
+            flex: 1;
+            color: #0645ad;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .topic-meta {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .audio-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border: 2px solid #a2a9b1;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+            min-width: 280px;
+        }
+
+        .player-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #0645ad;
+        }
+
+        .now-playing {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .control-btn {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .control-btn:hover {
+            background: #e1e5e9;
+        }
+
+        #audio-player {
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .file-list {
+            background: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            border-radius: 3px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .file-list h3 {
+            margin-bottom: 10px;
+            color: #0645ad;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        .file-name {
+            font-family: monospace;
+            color: #0645ad;
+        }
+
+        .file-size {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .wiki-link {
+            color: #0645ad;
+            text-decoration: none;
+        }
+
+        .wiki-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                order: 2;
+            }
+            
+            .infobox {
+                float: none;
+                width: 100%;
+                margin: 0 0 20px 0;
+            }
+            
+            .song-list {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">Music Encyclopedia</a>
+            <div class="nav-tabs">
+                <a href="#" class="nav-tab active" onclick="showSection('wiki')">Wiki</a>
+                <a href="#" class="nav-tab" onclick="showSection('forum')">Forum</a>
+                <a href="#" class="nav-tab" onclick="showSection('files')">Files</a>
+            </div>
+            <input type="text" class="search-box" placeholder="Search...">
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Navigation</div>
+                <div class="sidebar-content">
+                    <a href="#" class="sidebar-link">Main Page</a>
+                    <a href="#tvgirl" class="sidebar-link">TV Girl</a>
+                    <a href="#smiths" class="sidebar-link">The Smiths</a>
+                    <a href="#discography" class="sidebar-link">Discographies</a>
+                    <a href="#recent" class="sidebar-link">Recent Changes</a>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title">Quick Links</div>
+                <div class="sidebar-content">
+                    <a href="#" class="sidebar-link">Featured Artists</a>
+                    <a href="#" class="sidebar-link">Song Lists</a>
+                    <a href="#" class="sidebar-link">Forum Discussions</a>
+                    <a href="#" class="sidebar-link">File Repository</a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Tools</div>
+                <div class="sidebar-content">
+                    <a href="#" class="sidebar-link">Random Page</a>
+                    <a href="#" class="sidebar-link">Upload File</a>
+                    <a href="#" class="sidebar-link">Special Pages</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content">
+            <!-- Wiki Section -->
+            <div id="wiki-section" class="wiki-section active">
+                <h1 class="page-title">The Smiths & TV Girl</h1>
+                
+                <div class="infobox">
+                    <div class="infobox-title">Quick Facts</div>
+                    <div class="infobox-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/TV_Girl_%40_Casa_Del_Popolo_-_1.jpg/250px-TV_Girl_%40_Casa_Del_Popolo_-_1.jpg" alt="TV Girl">
+                    </div>
+                    <div class="infobox-row">
+                        <div class="infobox-label">Genres</div>
+                        <div class="infobox-data">Indie Pop, Alternative Rock</div>
+                    </div>
+                    <div class="infobox-row">
+                        <div class="infobox-label">Active</div>
+                        <div class="infobox-data">1982-1987, 2010-present</div>
+                    </div>
+                    <div class="infobox-row">
+                        <div class="infobox-label">Origin</div>
+                        <div class="infobox-data">Manchester, England / San Diego, CA</div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <p>This encyclopedia covers two influential bands: <strong>The Smiths</strong>, the legendary English rock band, and <strong>TV Girl</strong>, the contemporary indie pop group known for their nostalgic sound and sampling techniques.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2 class="section-title" id="tvgirl">TV Girl</h2>
+                    <p>TV Girl is an American indie pop band from <a href="#" class="wiki-link">San Diego, California</a>, consisting of Brad Petering, Jason Wyman, and Wyatt Harmon. The band is known for incorporating samples from a variety of sources into their music, creating a nostalgic, lo-fi sound.</p>
+                    
+                    <h3 class="subsection-title">Discography</h3>
+                    <p>The band has released several albums and EPs, with their music often featuring themes of relationships, nostalgia, and urban life.</p>
+                    
+                    <h3 class="subsection-title">Song Catalog</h3>
+                    <div class="song-list" id="tv-girl-songs"></div>
+                </div>
+
+                <div class="content-section">
+                    <h2 class="section-title" id="smiths">The Smiths</h2>
+                    <div class="infobox" style="float: right; margin-top: 0;">
+                        <div class="infobox-title">The Smiths</div>
+                        <div class="infobox-image">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/The_Smiths_1984_Heaven_Knows.jpg/250px-The_Smiths_1984_Heaven_Knows.jpg" alt="The Smiths">
+                        </div>
+                        <div class="infobox-row">
+                            <div class="infobox-label">Formed</div>
+                            <div class="infobox-data">1982</div>
+                        </div>
+                        <div class="infobox-row">
+                            <div class="infobox-label">Disbanded</div>
+                            <div class="infobox-data">1987</div>
+                        </div>
+                        <div class="infobox-row">
+                            <div class="infobox-label">Members</div>
+                            <div class="infobox-data">Morrissey, Johnny Marr, Andy Rourke, Mike Joyce</div>
+                        </div>
+                    </div>
+                    
+                    <p>The Smiths were an English <a href="#" class="wiki-link">rock band</a> formed in <a href="#" class="wiki-link">Manchester</a> in 1982. The group consisted of vocalist <a href="#" class="wiki-link">Morrissey</a>, guitarist <a href="#" class="wiki-link">Johnny Marr</a>, bassist <a href="#" class="wiki-link">Andy Rourke</a> and drummer <a href="#" class="wiki-link">Mike Joyce</a>. They are regarded as one of the most important acts to emerge from the British <a href="#" class="wiki-link">independent music</a> scene of the 1980s.</p>
+                    
+                    <h3 class="subsection-title">Musical Style</h3>
+                    <p>The Smiths' music was characterised by Morrissey's distinctive vocals and lyrics, and Marr's jangly guitar work. Their songs often dealt with themes of alienation, social commentary, and relationships.</p>
+                    
+                    <h3 class="subsection-title">Song Catalog</h3>
+                    <div class="song-list" id="smiths-songs"></div>
+                </div>
+            </div>
+
+            <!-- Forum Section -->
+            <div id="forum-section" class="forum-section">
+                <h1 class="page-title">Discussion Forum</h1>
+                
+                <div class="content-section">
+                    <h2 class="section-title">Recent Discussions</h2>
+                    <div class="forum-topics">
+                        <div class="forum-topic">
+                            <a href="#" class="topic-title">Best TV Girl album?</a>
+                            <div class="topic-meta">Last post: 2 hours ago | 23 replies</div>
+                        </div>
+                        <div class="forum-topic">
+                            <a href="#" class="topic-title">The Smiths influence on modern indie music</a>
+                            <div class="topic-meta">Last post: 5 hours ago | 45 replies</div>
+                        </div>
+                        <div class="forum-topic">
+                            <a href="#" class="topic-title">TV Girl sampling techniques discussion</a>
+                            <div class="topic-meta">Last post: 1 day ago | 12 replies</div>
+                        </div>
+                        <div class="forum-topic">
+                            <a href="#" class="topic-title">Favorite Smiths deep cuts?</a>
+                            <div class="topic-meta">Last post: 2 days ago | 67 replies</div>
+                        </div>
+                        <div class="forum-topic">
+                            <a href="#" class="topic-title">Concert experiences and reviews</a>
+                            <div class="topic-meta">Last post: 3 days ago | 89 replies</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Files Section -->
+            <div id="files-section" class="forum-section">
+                <h1 class="page-title">File Repository</h1>
+                
+                <div class="file-list">
+                    <h3>Website Files</h3>
+                    <div class="file-item">
+                        <span class="file-name">index.html</span>
+                        <span class="file-size">8.2 KB</span>
+                    </div>
+                    <div class="file-item">
+                        <span class="file-name">style.css</span>
+                        <span class="file-size">4.1 KB</span>
+                    </div>
+                    <div class="file-item">
+                        <span class="file-name">script.js</span>
+                        <span class="file-size">2.3 KB</span>
+                    </div>
+                    <div class="file-item">
+                        <span class="file-name">tvgirl_songs.txt</span>
+                        <span class="file-size">580 bytes</span>
+                    </div>
+                    <div class="file-item">
+                        <span class="file-name">smiths_songs.txt</span>
+                        <span class="file-size">1.1 KB</span>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2 class="section-title">Audio Sources</h2>
+                    <p><strong>Note:</strong> This site uses publicly available audio files from the Internet Archive for demonstration purposes. No copyrighted material is downloaded or stored locally.</p>
+                    
+                    <div class="file-list">
+                        <h3>Audio References</h3>
+                        <div class="file-item">
+                            <span class="file-name">Loving Machine - TV Girl</span>
+                            <span class="file-size">External URL</span>
+                        </div>
+                        <div class="file-item">
+                            <span class="file-name">Back to the Old House - The Smiths</span>
+                            <span class="file-size">External URL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Audio Player -->
+    <div class="audio-player">
+        <div class="player-title">🎵 Background Music</div>
+        <div class="now-playing" id="now-playing">Loading...</div>
+        <audio id="audio-player" autoplay loop></audio>
+        <div class="player-controls">
+            <button class="control-btn" onclick="togglePlay()" id="play-btn">⏸️</button>
+            <button class="control-btn" onclick="nextTrack()">⏭️</button>
+            <button class="control-btn" onclick="toggleMute()" id="mute-btn">🔊</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Music player functionality
+        const audioPlayer = document.getElementById('audio-player');
+        const nowPlaying = document.getElementById('now-playing');
+        const playBtn = document.getElementById('play-btn');
+        const muteBtn = document.getElementById('mute-btn');
+        
+        const tracks = [
+            {
+                src: 'https://archive.org/download/TVGirl-TourTape2012/LovingMachine.mp3',
+                title: 'Loving Machine - TV Girl'
+            },
+            {
+                src: 'https://archive.org/download/TheSmithsBackToTheOldHouse_201909/Back%20to%20the%20Old%20House.mp3',
+                title: 'Back to the Old House - The Smiths'
+            }
+        ];
+        
+        let currentTrack = 0;
+
+        function loadTrack(index) {
+            audioPlayer.src = tracks[index].src;
+            nowPlaying.textContent = tracks[index].title;
+        }
+
+        function togglePlay() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playBtn.textContent = '⏸️';
+            } else {
+                audioPlayer.pause();
+                playBtn.textContent = '▶️';
+            }
+        }
+
+        function nextTrack() {
+            currentTrack = (currentTrack + 1) % tracks.length;
+            loadTrack(currentTrack);
+            if (!audioPlayer.paused) {
+                audioPlayer.play();
+            }
+        }
+
+        function toggleMute() {
+            audioPlayer.muted = !audioPlayer.muted;
+            muteBtn.textContent = audioPlayer.muted ? '🔇' : '🔊';
+        }
+
+        // Auto-advance tracks
+        audioPlayer.addEventListener('ended', nextTrack);
+
+        // Start playing first track
+        loadTrack(0);
+        audioPlayer.play().catch(e => {
+            console.log('Autoplay prevented by browser');
+            playBtn.textContent = '▶️';
+        });
+
+        // Section switching
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.wiki-section, .forum-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            const targetSection = sectionName === 'wiki' ? 'wiki-section' : 
+                                 sectionName === 'forum' ? 'forum-section' : 'files-section';
+            document.getElementById(targetSection).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Populate song lists
+        const tvGirlSongs = [
+            'Loving Machine', 'Not Allowed', 'Birds Don\'t Sing', 'Lovers Rock', 'Pantyhose',
+            'Taking What\'s Not Yours', 'Cigarettes Out the Window', 'Blue Hair', 'Hate Yourself',
+            'The Getaway', 'The Blonde', 'Louise', 'Heaven Is a Bedroom', 'I\'ll Be Faithful',
+            'If You Want It', 'Since You Left', 'She Smokes in Bed', 'Mirror Mirror',
+            'King of Echo Park', 'Trouble', 'Lonely Girls', '7 Days Til Sunday',
+            'A Lonely Guy in a Lonely Town', 'Break My Bones', 'Stupid Actress', 'My Girlfriend',
+            'Valerie', 'Happy Days', 'Keep Yourself Amused', 'Girls Like Me'
+        ];
+
+        const smithsSongs = [
+            'Ask', 'Asleep', 'Barbarism Begins at Home', 'Bigmouth Strikes Again',
+            'Death of a Disco Dancer', 'Girlfriend in a Coma', 'Golden Lights', 'Hand in Glove',
+            'Handsome Devil', 'Heaven Knows I\'m Miserable Now', 'How Soon Is Now?',
+            'I Keep Mine Hidden', 'I Know It\'s Over', 'I Started Something I Couldn\'t Finish',
+            'I Want the One I Can\'t Have', 'I Won\'t Share You', 'Is It Really So Strange?',
+            'London', 'Miserable Lie', 'Money Changes Everything', 'Nowhere Fast', 'Panic',
+            'Please, Please, Please, Let Me Get What I Want', 'Pretty Girls Make Graves',
+            'Rubber Ring', 'Rusholme Ruffians', 'Sheila Take a Bow', 'Shoplifters of the World Unite',
+            'Some Girls Are Bigger Than Others', 'Still Ill', 'Stop Me If You Think You\'ve Heard This One Before',
+            'Stretch Out and Wait', 'Suffer Little Children', 'Sweet and Tender Hooligan',
+            'There Is a Light That Never Goes Out', 'These Things Take Time', 'This Charming Man',
+            'This Night Has Opened My Eyes', 'Unloveable', 'What Difference Does It Make?',
+            'What She Said', 'What\'s the World', 'William, It Was Really Nothing', 'Wonderful Woman',
+            'Work is a Four Letter Word', 'You\'ve Got Everything Now'
+        ];
+
+        function populateSongList(songs, containerId) {
+            const container = document.getElementById(containerId);
+            songs.forEach(song => {
+                const songElement = document.createElement('div');
+                songElement.className = 'song-item';
+                songElement.innerHTML = `<a href="#" class="song-link">${song}</a>`;
+                container.appendChild(songElement);
+            });
+        }
+
+        populateSongList(tvGirlSongs, 'tv-girl-songs');
+        populateSongList(smithsSongs, 'smiths-songs');
+    </script>
+</body>
+</html>
