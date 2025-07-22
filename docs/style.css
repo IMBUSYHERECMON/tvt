@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(120deg, #ffffff, #f4f6f8);
+  margin: 0;
+  padding: 0;
+  color: #333;
+  animation: fadein 1.5s ease-in;
+}
+
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #0070f3, #0051a8);
+  color: #fff;
+  animation: slidein 1s forwards;
+}
+
+#player {
+  margin-top: 20px;
+}
+
+.bands {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.band-section {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  animation: fadein 2s ease-in;
+}
+
+.band-img {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto 15px;
+  display: block;
+  border-radius: 8px;
+  transition: transform 0.4s;
+}
+
+.band-img:hover {
+  transform: scale(1.05);
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slidein {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
