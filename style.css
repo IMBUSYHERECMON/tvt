@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(120deg, #fdfbfb, #ebedee);
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(120deg, #ffffff, #eef3fb);
   margin: 0;
   padding: 0;
   color: #333;
@@ -10,7 +11,7 @@ body {
 .hero {
   text-align: center;
   padding: 40px 20px;
-  background: #222;
+  background: linear-gradient(135deg, #0e6cff, #4ea1ff);
   color: #fff;
   animation: slidein 1s forwards;
 }
@@ -30,7 +31,7 @@ body {
   background: rgba(255, 255, 255, 0.85);
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
   animation: fadein 2s ease-in;
 }
 
