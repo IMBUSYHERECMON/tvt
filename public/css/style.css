@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f9fbfd;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header and navigation */
+.header {
+  background: linear-gradient(180deg, #ffffff, #f0f2f5);
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0645ad;
+  text-decoration: none;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-tab {
+  padding: 8px 16px;
+  background: #f0f2f5;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  color: #0070f3;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.nav-tab:hover {
+  background: #fff;
+}
+
+.nav-tab.active {
+  background: #fff;
+  border-color: #e0e0e0;
+  border-bottom-color: #fff;
+}
+
+/* Layout */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.sidebar {
+  width: 250px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  height: fit-content;
+}
+
+.sidebar-section {
+  border-bottom: 1px solid #eaecf0;
+}
+
+.sidebar-title {
+  background: #f0f2f5;
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.sidebar-content {
+  padding: 12px;
+}
+
+.sidebar-link {
+  display: block;
+  color: #0070f3;
+  text-decoration: none;
+  padding: 4px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.sidebar-link:hover {
+  text-decoration: underline;
+}
+
+.content {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #222;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+/* Lists and items */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list-item {
+  margin: 4px 0;
+}
+
+.song-item {
+  margin: 2px 0;
+}
+
+/* Files table */
+.file-list {
+  border: 1px solid #a2a9b1;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px dotted #ccc;
+}
+
+.file-name {
+  font-family: monospace;
+  color: #0645ad;
+}
+
+.file-size {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Forum topics */
+.forum-topics {
+  border: 1px solid #a2a9b1;
+  border-radius: 3px;
+}
+
+.forum-topic {
+  display: flex;
+  padding: 12px;
+  border-bottom: 1px solid #eaecf0;
+  align-items: center;
+}
+
+.forum-topic:hover {
+  background: #f8f9fa;
+}
+
+.topic-title {
+  flex: 1;
+  color: #0645ad;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.topic-meta {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Audio player */
+.audio-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 280px;
+}
+
+.player-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #0070f3;
+}
+
+.now-playing {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.control-btn {
+  background: #f8f9fa;
+  border: 1px solid #d0d7de;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.control-btn:hover {
+  background: #e1e5e9;
+}
+
+#audio-player {
+  width: 100%;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    order: 2;
+    margin-top: 20px;
+  }
+}
