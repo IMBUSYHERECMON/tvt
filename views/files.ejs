@@ -1,0 +1,16 @@
+<%--
+  Files page.  Lists downloadable resources included with the site.  Each
+  resource is provided as a link that triggers a file download via the
+  `/download/:file` route.
+--%>
+
+<p>Below are song lists and other resources available for download.</p>
+
+<div class="file-list">
+  <% files.forEach(file => { %>
+    <div class="file-item">
+      <span class="file-name"><a href="/download/<%= file.name %>"><%= file.name %></a></span>
+      <span class="file-size"><%= (file.size / 1024).toFixed(1) %> KB</span>
+    </div>
+  <% }); %>
+</div>
