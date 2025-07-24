@@ -1,0 +1,27 @@
+<%--
+  Home page for the improved TVT website.  The express‑ejs‑layouts module
+  automatically wraps this content in the global layout defined in
+  views/layout.ejs.  Variables passed from the server include `title`,
+  `active` and `sidebar`.
+--%>
+
+<p>Welcome to the Smiths &amp; TV Girl Music Encyclopedia! This site combines a
+wiki, a community forum and downloadable resources for two beloved bands.
+Use the navigation tabs above to explore detailed articles, join the
+conversation, or grab a copy of our song lists.</p>
+
+<section>
+  <h2>Featured Bands</h2>
+  <div class="bands">
+    <div class="band-section">
+      <h3>TV Girl</h3>
+      <p>TV Girl is an American indie pop band from San Diego, California, known for their nostalgic lo‑fi sound and clever sampling.</p>
+      <ul id="tv-girl-songs" class="list"></ul>
+    </div>
+    <div class="band-section">
+      <h3>The Smiths</h3>
+      <p>The Smiths were an English rock band formed in Manchester in 1982. They are regarded as one of the most important acts of the 1980s British independent music scene, with Morrissey's poetic lyrics and Johnny Marr's jangly guitar at the forefront.</p>
+      <ul id="smiths-songs" class="list"></ul>
+    </div>
+  </div>
+</section>
