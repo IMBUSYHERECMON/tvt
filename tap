@@ -1,0 +1,105 @@
+{
+  "cells": [
+    {
+      "cell_type": "code",
+      "source": [
+        "import os\n",
+        "import time\n",
+        "import libtorrent as lt\n",
+        "\n",
+        "MAGNET_LINK = (\n",
+        "    \"magnet:?xt=urn:btih:brl45s3ysyotj6ljolmtnrlvfmyv4y7s&dn=tea&xl=59368985613\"\n",
+        "    \"&fc=57794\"\n",
+        ")\n",
+        "SAVE_DIR = \"grtech\"\n",
+        "\n",
+        "\n",
+        "def download_magnet(magnet_link: str, save_dir: str) -> None:\n",
+        "    \"\"\"Download the magnet link content to the specified directory.\"\"\"\n",
+        "    os.makedirs(save_dir, exist_ok=True)\n",
+        "    ses = lt.session()\n",
+        "    ses.listen_on(6881, 6891)\n",
+        "    params = {\n",
+        "        \"save_path\": save_dir,\n",
+        "        \"storage_mode\": lt.storage_mode_t.storage_mode_sparse,\n",
+        "    }\n",
+        "    handle = lt.add_magnet_uri(ses, magnet_link, params)\n",
+        "\n",
+        "    print(\"Downloading metadata...\")\n",
+        "    while not handle.has_metadata():\n",
+        "        time.sleep(1)\n",
+        "\n",
+        "    print(\"Starting torrent download...\")\n",
+        "    while handle.status().state != lt.torrent_status.seeding:\n",
+        "        s = handle.status()\n",
+        "        print(\n",
+        "            f\"{s.progress * 100:.2f}% complete \"\n",
+        "            f\"(down: {s.download_rate / 1000:.1f} kB/s \"\n",
+        "            f\"up: {s.upload_rate / 1000:.1f} kB/s \"\n",
+        "            f\"peers: {s.num_peers})\"\n",
+        "        )\n",
+        "        time.sleep(1)\n",
+        "\n",
+        "    print(\"Download complete!\")\n",
+        "\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "    download_magnet(MAGNET_LINK, SAVE_DIR)"
+      ],
+      "metadata": {
+        "id": "Id4U6vsHSLB6",
+        "outputId": "91dbb5e0-ef0e-4dff-85d3-f82ba5ec5757",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 419
+        }
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "/tmp/ipython-input-5-310623105.py:16: DeprecationWarning: listen_on() is deprecated\n",
+            "  ses.listen_on(6881, 6891)\n",
+            "/tmp/ipython-input-5-310623105.py:21: DeprecationWarning: add_magnet_uri() is deprecated\n",
+            "  handle = lt.add_magnet_uri(ses, magnet_link, params)\n",
+            "/tmp/ipython-input-5-310623105.py:24: DeprecationWarning: has_metadata() is deprecated\n",
+            "  while not handle.has_metadata():\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Downloading metadata...\n"
+          ]
+        },
+        {
+          "output_type": "error",
+          "ename": "KeyboardInterrupt",
+          "evalue": "",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m                         Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipython-input-5-310623105.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m     40\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     41\u001b[0m \u001b[0;32mif\u001b[0m \u001b[0m__name__\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;34m\"__main__\"\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 42\u001b[0;31m     \u001b[0mdownload_magnet\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mMAGNET_LINK\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mSAVE_DIR\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+            "\u001b[0;32m/tmp/ipython-input-5-310623105.py\u001b[0m in \u001b[0;36mdownload_magnet\u001b[0;34m(magnet_link, save_dir)\u001b[0m\n\u001b[1;32m     23\u001b[0m     \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Downloading metadata...\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     24\u001b[0m     \u001b[0;32mwhile\u001b[0m \u001b[0;32mnot\u001b[0m \u001b[0mhandle\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mhas_metadata\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 25\u001b[0;31m         \u001b[0mtime\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msleep\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     26\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     27\u001b[0m     \u001b[0mprint\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Starting torrent download...\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m: "
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "name": "Welcome To Colab",
+      "provenance": []
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
